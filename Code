@@ -1,0 +1,77 @@
+  -- Change this to the name of the player you want to teleport to
+
+       local playerName = "Selected player:" Option"
+
+       while true do
+
+           -- Find the other player's character
+
+           local otherPlayer = game.Players:FindFirstChild(playerName)
+
+           if otherPlayer then
+
+               local otherCharacter = otherPlayer.Character
+
+               if otherCharacter then
+
+                   -- Teleport the player to the other player's character
+
+                   wait(0.1) -- Add a small delay before teleporting
+
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = otherCharacter.HumanoidRootPart.CFrame
+
+                   -- Call the fire server method
+
+                   local targetPlayer = game:GetService("Players"):FindFirstChild(playerName)
+
+                   if targetPlayer then
+
+                       local targetHumanoid = targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid")
+
+                       if targetHumanoid then
+
+                           local args = {
+
+                               [1] = targetHumanoid,
+
+                               [2] = 1
+
+                           }
+
+                           game:GetService("ReplicatedStorage"):WaitForChild("jdskhfsIIIllliiIIIdchgdIiIIIlIlIli"):FireServer(unpack(args))
+
+                       end
+
+                   end
+
+               end
+
+           else
+
+               -- Stop the loop if the target player is not found
+
+               break
+
+           end
+
+           -- Check if the target player is alive, and stop the loop if they're not
+
+           local targetPlayer = game:GetService("Players"):FindFirstChild(playerName)
+
+           if targetPlayer then
+
+               local targetHumanoid = targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid")
+
+               if not targetHumanoid or targetHumanoid.Health <= 0 then
+
+                   break
+
+               end
+
+           end
+
+       end
+
+   end,
+
+})
